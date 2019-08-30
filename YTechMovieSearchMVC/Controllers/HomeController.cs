@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using YTechMovieSearchMVC.Models;
 
 namespace YTechMovieSearchMVC.Controllers
 {
@@ -12,17 +16,30 @@ namespace YTechMovieSearchMVC.Controllers
         {
             return View();
         }
+        
 
-        public ActionResult About()
+        public ActionResult Details(string id)
         {
-            ViewBag.Message = "Your application description page.";
+            string apiKey = "f6ee4776";
+            HttpWebRequest apiRequest = WebRequest.Create("http://www.omdbapi.com/?i=" + id + "&apikey=" + apiKey) as HttpWebRequest;
 
-            return View();
+            string apiResponse = "";
+            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                apiResponse = reader.ReadToEnd();
+            }
+
+            Movies rootObject = JsonConvert.DeserializeObject<Movies>(apiResponse);//to convert json data to type of class movie
+            return View(rootObject);
+
         }
+
+      
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+           
 
             return View();
         }

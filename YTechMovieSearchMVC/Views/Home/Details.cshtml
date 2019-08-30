@@ -1,0 +1,83 @@
+﻿@model YTechMovieSearchMVC.Models.Movies
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+        <div style="overflow-x:auto;">
+            <div class="alert">
+                <table class="table table-responsive table-bordered">
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Title)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Year)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.imdbRating)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.imdbRating)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           Release-date
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Released)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Runtime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Runtime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Image
+                        </td>
+                        <td>
+                            <img src="@Model.Poster" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
